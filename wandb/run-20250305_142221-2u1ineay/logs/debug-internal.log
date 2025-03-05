@@ -6,3 +6,5 @@
 {"time":"2025-03-05T14:22:24.15885+05:30","level":"INFO","msg":"handler: started","stream_id":{"value":"2u1ineay"}}
 {"time":"2025-03-05T14:22:24.158853+05:30","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"2u1ineay"}}
 {"time":"2025-03-05T14:22:24.565524+05:30","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-05T15:23:10.802149+05:30","level":"ERROR","msg":"HTTP error","status":404,"method":"POST","url":"https://api.wandb.ai/files/mafaz03/Transformer%20image%20to%20image%20translation/2u1ineay/file_stream"}
+{"time":"2025-03-05T15:23:10.803624+05:30","level":"ERROR+4","msg":"filestream: fatal error: filestream: failed to upload: 404 Not Found path=files/mafaz03/Transformer image to image translation/2u1ineay/file_stream: {\"error\":\"project mafaz03/Transformer image to image translation not found while streaming file\"}"}
