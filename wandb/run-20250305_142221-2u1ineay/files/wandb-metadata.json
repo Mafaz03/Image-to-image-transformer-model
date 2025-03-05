@@ -1,0 +1,37 @@
+{
+  "os": "macOS-15.2-arm64-arm-64bit",
+  "python": "3.11.5",
+  "startedAt": "2025-03-05T08:52:24.046299Z",
+  "program": "<python with no main file>",
+  "git": {
+    "remote": "https://github.com/Mafaz03/Image-to-image-transformer-model.git",
+    "commit": "d27565a0d6c196bb251967d6896b492fa174e84b"
+  },
+  "email": "mohdmafaz200303@gmail.com",
+  "root": "/Users/mohamedmafaz/Desktop/Image to image transformer model",
+  "host": "Mohameds-MacBook-Air-3.local",
+  "username": "mohamedmafaz",
+  "executable": "/usr/local/bin/python3",
+  "cpu_count": 8,
+  "cpu_count_logical": 8,
+  "disk": {
+    "/": {
+      "total": "245107195904",
+      "used": "159585603584"
+    }
+  },
+  "memory": {
+    "total": "8589934592"
+  },
+  "cpu": {
+    "count": 8,
+    "countLogical": 8
+  },
+  "apple": {
+    "name": "Apple M2",
+    "ecpuCores": 4,
+    "pcpuCores": 4,
+    "gpuCores": 10,
+    "memoryGb": 8
+  }
+}

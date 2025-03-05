@@ -1,0 +1,65 @@
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Current SDK version is 0.18.5
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Configure stats pid to 125
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Loading settings from /Users/mohamedmafaz/.config/wandb/settings
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Loading settings from /Users/mohamedmafaz/Desktop/Image to image transformer model/wandb/settings
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Loading settings from environment variables: {}
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Inferring run settings from compute environment: {'program': '<python with no main file>'}
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {'api_key': '***REDACTED***'}
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {'api_key': '***REDACTED***'}
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {'api_key': '***REDACTED***'}
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {'api_key': '***REDACTED***'}
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {'api_key': '***REDACTED***'}
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {'api_key': '***REDACTED***'}
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {}
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_init.py:_log_setup():534] Logging user logs to /Users/mohamedmafaz/Desktop/Image to image transformer model/wandb/run-20250305_142203-mgkum4el/logs/debug.log
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_init.py:_log_setup():535] Logging internal logs to /Users/mohamedmafaz/Desktop/Image to image transformer model/wandb/run-20250305_142203-mgkum4el/logs/debug-internal.log
+2025-03-05 14:22:03,686 INFO    MainThread:125 [wandb_init.py:_jupyter_setup():480] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x1788f5f10>
+2025-03-05 14:22:03,687 INFO    MainThread:125 [wandb_init.py:init():621] calling init triggers
+2025-03-05 14:22:03,687 INFO    MainThread:125 [wandb_init.py:init():628] wandb.init called with sweep_config: {}
+config: {'epochs': 10, 'lr': 0.0002, 'train_bs': 7, 'test_bs': 2, 'patch_size': 8, 'projection_dim': 64, 'image_size': 256, 'eps': 1e-06, 'channels': 3, 'num_heads': 2, 'dropout': 0.5, 'intermediate_size': 128, 'num_hidden_layers': 12}
+2025-03-05 14:22:03,687 INFO    MainThread:125 [wandb_init.py:init():671] starting backend
+2025-03-05 14:22:03,687 INFO    MainThread:125 [wandb_init.py:init():675] sending inform_init request
+2025-03-05 14:22:03,689 INFO    MainThread:125 [backend.py:_multiprocessing_setup():104] multiprocessing start_methods=spawn,fork,forkserver, using: spawn
+2025-03-05 14:22:03,689 INFO    MainThread:125 [wandb_init.py:init():688] backend started and connected
+2025-03-05 14:22:03,698 INFO    MainThread:125 [wandb_run.py:_label_probe_notebook():1342] probe notebook
+2025-03-05 14:22:03,698 INFO    MainThread:125 [wandb_run.py:_label_probe_notebook():1352] Unable to probe notebook: 'NoneType' object has no attribute 'get'
+2025-03-05 14:22:03,698 INFO    MainThread:125 [wandb_init.py:init():783] updated telemetry
+2025-03-05 14:22:03,731 INFO    MainThread:125 [wandb_init.py:init():816] communicating run to backend with 90.0 second timeout
+2025-03-05 14:22:04,511 INFO    MainThread:125 [wandb_init.py:init():867] starting run threads in backend
+2025-03-05 14:22:04,891 INFO    MainThread:125 [wandb_run.py:_console_start():2463] atexit reg
+2025-03-05 14:22:04,891 INFO    MainThread:125 [wandb_run.py:_redirect():2311] redirect: wrap_raw
+2025-03-05 14:22:04,891 INFO    MainThread:125 [wandb_run.py:_redirect():2376] Wrapping output streams.
+2025-03-05 14:22:04,891 INFO    MainThread:125 [wandb_run.py:_redirect():2401] Redirects installed.
+2025-03-05 14:22:04,893 INFO    MainThread:125 [wandb_init.py:init():911] run started, returning control to user process
+2025-03-05 14:22:04,894 INFO    MainThread:125 [jupyter.py:save_ipynb():387] not saving jupyter notebook
+2025-03-05 14:22:04,894 INFO    MainThread:125 [wandb_init.py:_pause_backend():445] pausing backend
+2025-03-05 14:22:21,197 INFO    MainThread:125 [wandb_init.py:_resume_backend():450] resuming backend
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Current SDK version is 0.18.5
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Configure stats pid to 125
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Loading settings from /Users/mohamedmafaz/.config/wandb/settings
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Loading settings from /Users/mohamedmafaz/Desktop/Image to image transformer model/wandb/settings
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Loading settings from environment variables: {}
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Inferring run settings from compute environment: {'program': '<python with no main file>'}
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {'api_key': '***REDACTED***'}
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {'api_key': '***REDACTED***'}
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {'api_key': '***REDACTED***'}
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {'api_key': '***REDACTED***'}
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {'api_key': '***REDACTED***'}
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {'api_key': '***REDACTED***'}
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_setup.py:_flush():79] Applying login settings: {}
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_init.py:_log_setup():534] Logging user logs to /Users/mohamedmafaz/Desktop/Image to image transformer model/wandb/run-20250305_142221-2u1ineay/logs/debug.log
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_init.py:_log_setup():535] Logging internal logs to /Users/mohamedmafaz/Desktop/Image to image transformer model/wandb/run-20250305_142221-2u1ineay/logs/debug-internal.log
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_init.py:init():621] calling init triggers
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_init.py:init():628] wandb.init called with sweep_config: {}
+config: {'epochs': 10, 'lr': 0.0002, 'train_bs': 7, 'test_bs': 2, 'patch_size': 8, 'projection_dim': 64, 'image_size': 256, 'eps': 1e-06, 'channels': 3, 'num_heads': 2, 'dropout': 0.5, 'intermediate_size': 128, 'num_hidden_layers': 12}
+2025-03-05 14:22:21,210 INFO    MainThread:125 [wandb_init.py:init():646] re-initializing run, found existing run on stack: mgkum4el
+2025-03-05 14:22:21,211 INFO    MainThread:125 [wandb_run.py:_finish():2158] finishing run mafaz03/my-awesome-project/mgkum4el
+2025-03-05 14:22:21,212 INFO    MainThread:125 [jupyter.py:save_history():459] not saving jupyter history
+2025-03-05 14:22:21,212 INFO    MainThread:125 [jupyter.py:save_ipynb():387] not saving jupyter notebook
+2025-03-05 14:22:21,212 INFO    MainThread:125 [wandb_init.py:_jupyter_teardown():462] cleaning up jupyter logic
+2025-03-05 14:22:21,212 INFO    MainThread:125 [wandb_run.py:_atexit_cleanup():2426] got exitcode: 0
+2025-03-05 14:22:21,212 INFO    MainThread:125 [wandb_run.py:_restore():2408] restore
+2025-03-05 14:22:21,212 INFO    MainThread:125 [wandb_run.py:_restore():2414] restore done
+2025-03-05 14:22:24,029 INFO    MainThread:125 [wandb_run.py:_footer_history_summary_info():3975] rendering history
+2025-03-05 14:22:24,030 INFO    MainThread:125 [wandb_run.py:_footer_history_summary_info():4007] rendering summary
+2025-03-05 14:22:24,039 INFO    MainThread:125 [wandb_run.py:_footer_sync_info():3934] logging synced files

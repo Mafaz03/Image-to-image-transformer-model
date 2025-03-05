@@ -1,0 +1,21 @@
+{"time":"2025-03-05T14:22:03.71814+05:30","level":"INFO","msg":"using version","core version":"0.18.5"}
+{"time":"2025-03-05T14:22:03.718188+05:30","level":"INFO","msg":"created symlink","path":"/Users/mohamedmafaz/Desktop/Image to image transformer model/wandb/run-20250305_142203-mgkum4el/logs/debug-core.log"}
+{"time":"2025-03-05T14:22:03.944884+05:30","level":"INFO","msg":"created new stream","id":"mgkum4el"}
+{"time":"2025-03-05T14:22:03.945073+05:30","level":"INFO","msg":"stream: started","id":"mgkum4el"}
+{"time":"2025-03-05T14:22:03.945314+05:30","level":"INFO","msg":"sender: started","stream_id":"mgkum4el"}
+{"time":"2025-03-05T14:22:03.945331+05:30","level":"INFO","msg":"handler: started","stream_id":{"value":"mgkum4el"}}
+{"time":"2025-03-05T14:22:03.945249+05:30","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"mgkum4el"}}
+{"time":"2025-03-05T14:22:04.514271+05:30","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-05T14:22:04.894412+05:30","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-05T14:22:21.198523+05:30","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-05T14:22:21.213256+05:30","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-05T14:22:21.213737+05:30","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-05T14:22:21.512548+05:30","level":"WARN","msg":"Unable to find program entrypoint in current directory, not creating job artifact."}
+{"time":"2025-03-05T14:22:21.512578+05:30","level":"INFO","msg":"sender: sendDefer: no job artifact to save"}
+{"time":"2025-03-05T14:22:22.218912+05:30","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading output.log","runtime_seconds":0.383593166,"progress":"93B/93B"}],"total_operations":1}}
+{"time":"2025-03-05T14:22:22.375301+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-05T14:22:24.042601+05:30","level":"INFO","msg":"stream: closing","id":"mgkum4el"}
+{"time":"2025-03-05T14:22:24.042644+05:30","level":"INFO","msg":"handler: closed","stream_id":{"value":"mgkum4el"}}
+{"time":"2025-03-05T14:22:24.042673+05:30","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"mgkum4el"}}
+{"time":"2025-03-05T14:22:24.042681+05:30","level":"INFO","msg":"sender: closed","stream_id":"mgkum4el"}
+{"time":"2025-03-05T14:22:24.043006+05:30","level":"INFO","msg":"stream: closed","id":"mgkum4el"}

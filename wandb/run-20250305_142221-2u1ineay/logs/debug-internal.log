@@ -1,0 +1,8 @@
+{"time":"2025-03-05T14:22:24.046202+05:30","level":"INFO","msg":"using version","core version":"0.18.5"}
+{"time":"2025-03-05T14:22:24.046267+05:30","level":"INFO","msg":"created symlink","path":"/Users/mohamedmafaz/Desktop/Image to image transformer model/wandb/run-20250305_142221-2u1ineay/logs/debug-core.log"}
+{"time":"2025-03-05T14:22:24.158815+05:30","level":"INFO","msg":"created new stream","id":"2u1ineay"}
+{"time":"2025-03-05T14:22:24.158846+05:30","level":"INFO","msg":"stream: started","id":"2u1ineay"}
+{"time":"2025-03-05T14:22:24.15886+05:30","level":"INFO","msg":"sender: started","stream_id":"2u1ineay"}
+{"time":"2025-03-05T14:22:24.15885+05:30","level":"INFO","msg":"handler: started","stream_id":{"value":"2u1ineay"}}
+{"time":"2025-03-05T14:22:24.158853+05:30","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"2u1ineay"}}
+{"time":"2025-03-05T14:22:24.565524+05:30","level":"INFO","msg":"Starting system monitor"}
