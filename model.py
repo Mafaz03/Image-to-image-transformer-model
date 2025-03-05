@@ -163,7 +163,7 @@ def residual_block(x: torch.Tensor, downsample: bool, out_channels: int, kernel_
         kernel_size=kernel_size,
         stride=(1 if not downsample else 2),
         padding=kernel_size // 2, 
-        bias=True  
+        bias=False  
     )(x)
 
     y = relu_bn(y)
@@ -172,7 +172,8 @@ def residual_block(x: torch.Tensor, downsample: bool, out_channels: int, kernel_
         out_channels=out_channels,  
         kernel_size=kernel_size,
         stride=1,
-        padding=kernel_size // 2  
+        padding=kernel_size // 2,
+        bias=False  
     )(y)
 
     if downsample:
@@ -181,7 +182,8 @@ def residual_block(x: torch.Tensor, downsample: bool, out_channels: int, kernel_
             out_channels=out_channels,  
             kernel_size=1,
             stride=2,
-            padding=0  
+            padding=0 ,
+            bias=False   
         )(x)
     return relu_bn(x+y)
 
