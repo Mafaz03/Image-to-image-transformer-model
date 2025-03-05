@@ -17,7 +17,7 @@ class TransformerConfig:
             num_hidden_layers=12,
             epochs = 10,
             lr = 2e-4,
-            train_bs = 20,
+            train_bs = 40,
             test_bs = 2,
             **kwargs
     ):
