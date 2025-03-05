@@ -159,8 +159,8 @@ import torch
 import torch.nn as nn
 
 def relu_bn(x):
-    return nn.ReLU()(nn.BatchNorm2d(x.size(1))(x))
-
+    device = x.device  # Get the device of the input tensor
+    return nn.ReLU()(nn.BatchNorm2d(x.size(1)).to(device)(x))  # Move BatchNorm2d to the same device as x
 class ResidualBlock(nn.Module):
     def __init__(self, downsample: bool, in_channels: int, out_channels: int, kernel_size: int = 3):
         super(ResidualBlock, self).__init__()
