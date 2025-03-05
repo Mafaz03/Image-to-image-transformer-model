@@ -249,28 +249,28 @@ class Generator(nn.Module):
         x = nn.functional.leaky_relu(x, negative_slope=0.2)  # LeakyReLU with slope 0.2
 
         # Using residual_block as a class, initialize with required parameters
-        res_block = ResidualBlock(downsample=False, in_channels=512, out_channels=512)
+        res_block = ResidualBlock(downsample=False, in_channels=512, out_channels=512).to(x.device)
         x = res_block(x)
 
         x = self.deconv2(x)
         x = self.bn2(x)
         x = nn.functional.leaky_relu(x, negative_slope=0.2)
 
-        res_block = ResidualBlock(downsample=False, in_channels=256, out_channels=256)
+        res_block = ResidualBlock(downsample=False, in_channels=256, out_channels=256).to(x.device)
         x = res_block(x)
 
         x = self.deconv3(x)
         x = self.bn3(x)
         x = nn.functional.leaky_relu(x, negative_slope=0.2)
 
-        res_block = ResidualBlock(downsample=False, in_channels=64, out_channels=64)
+        res_block = ResidualBlock(downsample=False, in_channels=64, out_channels=64).to(x.device)
         x = res_block(x)
 
         x = self.deconv4(x)
         x = self.bn4(x)
         x = nn.functional.leaky_relu(x, negative_slope=0.2)
 
-        res_block = ResidualBlock(downsample=False, in_channels=32, out_channels=32)
+        res_block = ResidualBlock(downsample=False, in_channels=32, out_channels=32).to(x.device)
         x = res_block(x)
 
         x = self.final_conv(x)
