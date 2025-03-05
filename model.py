@@ -15,9 +15,17 @@ class TransformerConfig:
             dropout = 0.5,
             intermediate_size = 128,
             num_hidden_layers=12,
+            epochs = 10,
+            lr = 2e-4,
+            train_bs = 7,
+            test_bs = 2,
             **kwargs
     ):
-        super().__init__()      
+        super().__init__()    
+        self.epochs = epochs  
+        self.lr = lr
+        self.train_bs = train_bs
+        self.test_bs = test_bs
         self.patch_size = patch_size
         self.projection_dim = projection_dim
         self.image_size = image_size
@@ -177,48 +185,69 @@ def residual_block(x: torch.Tensor, downsample: bool, out_channels: int, kernel_
         )(x)
     return relu_bn(x+y)
 
-def Generator(image):
-    p = Patches(config=TransformerConfig())
-    patches = p(image).transpose(1,2)
-    pe = PatchEncoder(config=TransformerConfig())
-    patch_encoder = pe(patches)
+# def Generator(image):
 
-    encoder_layer = TransformerEncoder(TransformerConfig())
-    output = encoder_layer(patch_encoder)
+class Generator(nn.Module):
+    def __init__(self):
+        super().__init__()
 
-    x = output.view(output.shape[0], 1024, 8, 8)
-    x = nn.ConvTranspose2d(in_channels=1024, out_channels=512, kernel_size=6, stride=2, padding=2, bias=False)(x)
-    x = nn.BatchNorm2d(num_features=x.shape[1], eps=TransformerConfig().eps)(x)
-    x = nn.functional.leaky_relu(x)
+        self.p = Patches(config=TransformerConfig())
+        self.pe = PatchEncoder(config=TransformerConfig())
+        self.encoder_layer = TransformerEncoder(TransformerConfig())
 
-    x = residual_block(x, downsample=False, out_channels=512)
+        self.deconv1 = nn.ConvTranspose2d(1024, 512, kernel_size=6, stride=2, padding=2, bias=False)
+        self.bn1 = nn.BatchNorm2d(512, eps=TransformerConfig().eps)
 
-    x = nn.ConvTranspose2d(in_channels=512, out_channels=256, kernel_size=6, stride=2, padding=2, bias=False)(x)
-    x = nn.BatchNorm2d(num_features=x.shape[1], eps=TransformerConfig().eps)(x)
-    x = nn.functional.leaky_relu(x)
+        self.deconv2 = nn.ConvTranspose2d(512, 256, kernel_size=6, stride=2, padding=2, bias=False)
+        self.bn2 = nn.BatchNorm2d(256, eps=TransformerConfig().eps)
 
-    x = residual_block(x, downsample=False, out_channels=256)
+        self.deconv3 = nn.ConvTranspose2d(256, 64, kernel_size=7, stride=2, padding=2, bias=False)
+        self.bn3 = nn.BatchNorm2d(64, eps=TransformerConfig().eps)
 
-    x = nn.ConvTranspose2d(in_channels=256, out_channels=64, kernel_size=7, stride=2, padding=2, bias=False)(x)
-    x = nn.BatchNorm2d(num_features=x.shape[1], eps=TransformerConfig().eps)(x)
-    x = nn.functional.leaky_relu(x)
+        self.deconv4 = nn.ConvTranspose2d(64, 32, kernel_size=7, stride=4, padding=2, bias=False)
+        self.bn4 = nn.BatchNorm2d(32, eps=TransformerConfig().eps)
 
-    x = residual_block(x, downsample=False, out_channels=64)
+        self.final_conv = nn.Conv2d(32, 3, kernel_size=6, stride=1, padding=1, bias=False)
 
-    x = nn.ConvTranspose2d(in_channels=64, out_channels=32, kernel_size=7, stride=4, padding=2, bias=False)(x)
-    x = nn.BatchNorm2d(num_features=x.shape[1], eps=TransformerConfig().eps)(x)
-    x = nn.functional.leaky_relu(x)
+    def forward(self, image):
+        patches = self.p(image).transpose(1, 2)
+        patch_encoder = self.pe(patches)
+        output = self.encoder_layer(patch_encoder)
 
-    x = residual_block(x, downsample=False, out_channels=32)
+        x = output.view(output.shape[0], 1024, 8, 8)
 
-    x = nn.Conv2d(in_channels=32, out_channels=3, kernel_size=6, stride=1, padding=1, bias=False)(x)
+        x = self.deconv1(x)
+        x = self.bn1(x)
+        x = nn.functional.leaky_relu(x)
 
-    x = torch.tanh(x)
-    
-    return x
+        x = residual_block(x, downsample=False, out_channels=512)
+
+        x = self.deconv2(x)
+        x = self.bn2(x)
+        x = nn.functional.leaky_relu(x)
+
+        x = residual_block(x, downsample=False, out_channels=256)
+
+        x = self.deconv3(x)
+        x = self.bn3(x)
+        x = nn.functional.leaky_relu(x)
+
+        x = residual_block(x, downsample=False, out_channels=64)
+
+        x = self.deconv4(x)
+        x = self.bn4(x)
+        x = nn.functional.leaky_relu(x)
+
+        x = residual_block(x, downsample=False, out_channels=32)
+
+        x = self.final_conv(x)
+        x = torch.tanh(x)
+
+        return x
 
 if __name__ == "__main__":
     img = torch.rand(1, 3, 256, 256)
-    output = Generator(img)
+    gen = Generator()
+    output = gen(img)
     print(output.shape)
     
