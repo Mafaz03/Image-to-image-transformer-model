@@ -155,37 +155,63 @@ def relu_bn(inputs: torch.Tensor) -> torch.Tensor:
     bn = nn.BatchNorm2d(num_features=inputs.shape[1], eps=TransformerConfig().eps)(relu)
     return bn
 
-def residual_block(x: torch.Tensor, downsample: bool, out_channels: int, kernel_size: int = 3) -> torch.Tensor:
-    in_channels = x.shape[1]
-    y = nn.Conv2d(
-        in_channels=in_channels,  # Specify the correct number of input channels
-        out_channels=out_channels,
-        kernel_size=kernel_size,
-        stride=(1 if not downsample else 2),
-        padding=kernel_size // 2, 
-        bias=False  
-    )(x)
+import torch
+import torch.nn as nn
 
-    y = relu_bn(y)
-    y = nn.Conv2d(
-        in_channels=y.shape[1],  
-        out_channels=out_channels,  
-        kernel_size=kernel_size,
-        stride=1,
-        padding=kernel_size // 2,
-        bias=False  
-    )(y)
+def relu_bn(x):
+    return nn.ReLU()(nn.BatchNorm2d(x.size(1))(x))
 
-    if downsample:
-        x = nn.Conv2d(
-            in_channels=x.shape[1],  
-            out_channels=out_channels,  
-            kernel_size=1,
-            stride=2,
-            padding=0 ,
-            bias=False   
-        )(x)
-    return relu_bn(x+y)
+class ResidualBlock(nn.Module):
+    def __init__(self, downsample: bool, in_channels: int, out_channels: int, kernel_size: int = 3):
+        super(ResidualBlock, self).__init__()
+        self.downsample = downsample
+        
+        # First convolution layer
+        self.y_1 = nn.Conv2d(
+            in_channels=in_channels,  
+            out_channels=out_channels,
+            kernel_size=kernel_size,
+            stride=(1 if not downsample else 2),
+            padding=kernel_size // 2,
+            bias=False
+        )
+        
+        # Second convolution layer
+        self.y_2 = nn.Conv2d(
+            in_channels=out_channels,
+            out_channels=out_channels,
+            kernel_size=kernel_size,
+            stride=1,
+            padding=kernel_size // 2,
+            bias=False
+        )
+
+        # Downsample shortcut if needed
+        if downsample:
+            self.downsample_conv = nn.Conv2d(
+                in_channels=in_channels,
+                out_channels=out_channels,
+                kernel_size=1,
+                stride=2,
+                padding=0,
+                bias=False
+            )
+        else:
+            self.downsample_conv = None
+
+    def forward(self, x: torch.Tensor):
+        # Apply the first convolution and batch normalization + ReLU
+        y = relu_bn(self.y_1(x))
+
+        # Apply the second convolution
+        y = self.y_2(y)
+
+        # If downsampling, apply the downsample shortcut
+        if self.downsample:
+            x = self.downsample_conv(x)
+
+        # Add the input (x) to the output (y) and apply ReLU
+        return relu_bn(x + y)
 
 # def Generator(image):
 
@@ -193,9 +219,9 @@ class Generator(nn.Module):
     def __init__(self):
         super().__init__()
 
-        self.p = Patches(config=TransformerConfig())
-        self.pe = PatchEncoder(config=TransformerConfig())
-        self.encoder_layer = TransformerEncoder(TransformerConfig())
+        self.p = Patches(config=TransformerConfig())  # Assumes you have a Patches class
+        self.pe = PatchEncoder(config=TransformerConfig())  # Assumes you have a PatchEncoder class
+        self.encoder_layer = TransformerEncoder(TransformerConfig())  # Assumes you have TransformerEncoder class
 
         self.deconv1 = nn.ConvTranspose2d(1024, 512, kernel_size=6, stride=2, padding=2, bias=False)
         self.bn1 = nn.BatchNorm2d(512, eps=TransformerConfig().eps)
@@ -212,38 +238,43 @@ class Generator(nn.Module):
         self.final_conv = nn.Conv2d(32, 3, kernel_size=6, stride=1, padding=1, bias=False)
 
     def forward(self, image):
-        patches = self.p(image).transpose(1, 2)
-        patch_encoder = self.pe(patches)
-        output = self.encoder_layer(patch_encoder)
+        patches = self.p(image).transpose(1, 2)  # Divide image into patches and transpose
+        patch_encoder = self.pe(patches)  # Encode patches
+        output = self.encoder_layer(patch_encoder)  # Pass through the transformer encoder
 
-        x = output.view(output.shape[0], 1024, 8, 8)
+        x = output.view(output.shape[0], 1024, 8, 8)  # Reshape the output to the correct spatial dimensions
 
         x = self.deconv1(x)
         x = self.bn1(x)
-        x = nn.functional.leaky_relu(x)
+        x = nn.functional.leaky_relu(x, negative_slope=0.2)  # LeakyReLU with slope 0.2
 
-        x = residual_block(x, downsample=False, out_channels=512)
+        # Using residual_block as a class, initialize with required parameters
+        res_block = ResidualBlock(downsample=False, in_channels=512, out_channels=512)
+        x = res_block(x)
 
         x = self.deconv2(x)
         x = self.bn2(x)
-        x = nn.functional.leaky_relu(x)
+        x = nn.functional.leaky_relu(x, negative_slope=0.2)
 
-        x = residual_block(x, downsample=False, out_channels=256)
+        res_block = ResidualBlock(downsample=False, in_channels=256, out_channels=256)
+        x = res_block(x)
 
         x = self.deconv3(x)
         x = self.bn3(x)
-        x = nn.functional.leaky_relu(x)
+        x = nn.functional.leaky_relu(x, negative_slope=0.2)
 
-        x = residual_block(x, downsample=False, out_channels=64)
+        res_block = ResidualBlock(downsample=False, in_channels=64, out_channels=64)
+        x = res_block(x)
 
         x = self.deconv4(x)
         x = self.bn4(x)
-        x = nn.functional.leaky_relu(x)
+        x = nn.functional.leaky_relu(x, negative_slope=0.2)
 
-        x = residual_block(x, downsample=False, out_channels=32)
+        res_block = ResidualBlock(downsample=False, in_channels=32, out_channels=32)
+        x = res_block(x)
 
         x = self.final_conv(x)
-        x = torch.tanh(x)
+        x = torch.tanh(x)  # Use tanh activation to output values between -1 and 1 (normalized RGB)
 
         return x
 
