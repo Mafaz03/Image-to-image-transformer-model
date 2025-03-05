@@ -15,7 +15,7 @@ class TransformerConfig:
             dropout = 0.5,
             intermediate_size = 128,
             num_hidden_layers=12,
-            epochs = 10,
+            epochs = 500,
             lr = 2e-4,
             train_bs = 40,
             test_bs = 2,
